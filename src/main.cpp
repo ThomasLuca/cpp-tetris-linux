@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./lib/Piece.h"
+#include "./lib/piece.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ int main(){
         {
             if (pieces.getBlockOfPiece(typeOfPiece, position, i, j))
             {
-                cout << "█";
+                cout << "\033[;32m█\033[0m"; //32m = green foreground; 0m = transparent background
             } else {
                 cout << " ";
             }
