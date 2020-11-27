@@ -7,6 +7,7 @@ BUILDDIR=bin
 
 OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/piece.o \
+				$(LIBDIR)/arena.o \
 
 all: makebuildir $(TARGET)
 
