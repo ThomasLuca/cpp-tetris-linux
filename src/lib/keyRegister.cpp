@@ -28,6 +28,8 @@ namespace Tetris{
         case 'e':
             return Key::RotateRight;
         }
+        return Key::UNKNOWN;
+        
     }
 
     void KeyRegister::clear(void)
