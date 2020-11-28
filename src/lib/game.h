@@ -17,6 +17,6 @@ namespace Tetris{
             Arena arena;
             int const START_POS_X = 3;
             int const START_POS_Y = 0;
-            int const START_ROTION = 0;
+            int const START_ROTATION = 0;
     };
 };
