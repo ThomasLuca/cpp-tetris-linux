@@ -31,4 +31,13 @@ namespace Tetris{
             }
         }
     }
+
+    int Arena::getWidth(){
+        return arenaWidth;
+    }
+
+    int Arena::getHeight(){
+        return arenaHeight;
+    }
+
 };

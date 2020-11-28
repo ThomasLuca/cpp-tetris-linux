@@ -9,6 +9,8 @@ namespace Tetris{
             bool getPoint(int y, int x);
             void lockPiece(int y, int x, int pieceType, int pieceRotation);
             void createArena();
+            int getWidth();
+            int getHeight();
 
         private:
             int arenaWidth = 10;
