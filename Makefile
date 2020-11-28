@@ -9,6 +9,7 @@ OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/piece.o \
 				$(LIBDIR)/arena.o \
 				$(LIBDIR)/game.o \
+				$(LIBDIR)/keyRegister.o \
 
 all: makebuildir $(TARGET)
 
