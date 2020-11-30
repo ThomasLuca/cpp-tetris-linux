@@ -4,19 +4,20 @@ namespace Tetris{
     class KeyRegister
     {
         private:
+        public: 
             enum Key{
-                UP,
                 DOWN,
                 LEFT,
-                Right,
-                RotateRight,
-                RotateLeft,
+                RIGHT,
+                ROTATE_RIGHT,
+                ROTATE_LEFT,
                 UNKNOWN
             };
-
+        
         public:
-            Key pressed_key(void);
+            static Key pressed_key(void);
             void clear(void);
-            char getch(void);
+            static char getch(void);
+            
     };
 };

@@ -19,7 +19,7 @@ namespace Tetris{
     }
 
     /*  Places pieces anywhere in the arena by enabling certain positions   */
-    void Arena::lockPiece(int y, int x, int piece, int rotation){
+    void Arena::placePiece(int y, int x, int piece, int rotation){
         for (int i = y; i < y + 4; i++)
         {
             for (int j = x; j < x + 4; j++)

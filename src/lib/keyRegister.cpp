@@ -15,18 +15,16 @@ namespace Tetris{
         char key = getch();
         switch (key)
         {
-        case 'z':
-            return Key::UP;
         case 's':
             return Key::DOWN;
         case 'q':
             return Key::LEFT;
         case 'd':
-            return Key::Right;
+            return Key::RIGHT;
         case 'a':
-            return Key::RotateLeft;
+            return Key::ROTATE_LEFT;
         case 'e':
-            return Key::RotateRight;
+            return Key::ROTATE_RIGHT;
         }
         return Key::UNKNOWN;
         

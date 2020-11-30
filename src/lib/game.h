@@ -9,14 +9,17 @@ namespace Tetris{
         public:
             Game();
             std::string drawArena();
+            void movement();
+            void generatePiece();
+            void moveDown();
 
         private:
-            int generatePiece();
         
         private:
             Arena arena;
-            int const START_POS_X = 3;
-            int const START_POS_Y = 0;
-            int const START_ROTATION = 0;
+            int POS_X = 3;
+            int POS_Y = 0;
+            int ROTATION = 0;
+            int pieceType = 0;
     };
 };
