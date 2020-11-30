@@ -18,6 +18,10 @@ namespace Tetris{
         return arena[y][x];
     }
 
+    void Arena::setPoint(int y, int x){
+        arena[y][x] = 1;
+    }
+
     /*  Places pieces anywhere in the arena by enabling certain positions   */
     void Arena::placePiece(int y, int x, int piece, int rotation){
         for (int i = y; i < y + 4; i++)
@@ -26,7 +30,7 @@ namespace Tetris{
             {
                 if (pieces.getBlockOfPiece(piece, rotation, i - y, j - x))
                 {
-                    arena[i][j] = 1;
+                    setPoint(i, j);
                 }
             }
         }

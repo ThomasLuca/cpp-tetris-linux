@@ -7,6 +7,7 @@ namespace Tetris{
     {
         public:
             bool getPoint(int y, int x);
+            void setPoint(int y, int x);
             void placePiece(int y, int x, int pieceType, int pieceRotation);
             void createArena();
             int getWidth();
