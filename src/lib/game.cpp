@@ -12,15 +12,16 @@ namespace Tetris{
     }
 
     std::string Game::drawArena(){
-        arena.createArena();
-        arena.placePiece(POS_Y, POS_X, pieceType, ROTATION);
+        lockedArena.createArena();
+        movingPieceArena.createArena();
+        movingPieceArena.placePiece(POS_Y, POS_X, pieceType, ROTATION);
         
         std::stringstream output;
-        for (int i = 0; i < arena.getHeight(); i++)
+        for (int i = 0; i < lockedArena.getHeight(); i++)
         {
-            for (int j = 0; j < arena.getWidth(); j++)
+            for (int j = 0; j < lockedArena.getWidth(); j++)
             {
-                if (arena.getPoint(i, j))
+                if (movingPieceArena.getPoint(i, j) || lockedArena.getPoint(i, j))
                 {
                     output << "\033[;32m██\033[0m";
                 } else {
@@ -39,20 +40,34 @@ namespace Tetris{
     void Game::movement(){
         KeyRegister::Key key;
         key = KeyRegister::pressed_key();
-        if (key == KeyRegister::Key::DOWN) {
+        if (key == KeyRegister::Key::DOWN && isValidMovement()) {
             moveDown();
-        } else if (key == KeyRegister::Key::LEFT) {
+        } else if (key == KeyRegister::Key::LEFT && isValidMovement()) {
             POS_X--;
-        } else if (key == KeyRegister::Key::RIGHT) {
+        } else if (key == KeyRegister::Key::RIGHT && isValidMovement()) {
             POS_X++;
-        } else if (key == KeyRegister::Key::ROTATE_LEFT) {
+        } else if (key == KeyRegister::Key::ROTATE_LEFT && isValidMovement()) {
             ROTATION = (ROTATION + 3) % 4;
-        } else if (key == KeyRegister::Key::ROTATE_RIGHT) {
+        } else if (key == KeyRegister::Key::ROTATE_RIGHT && isValidMovement()) {
             ROTATION = (ROTATION + 1) % 4;
         }
     }
 
     void Game::moveDown(){
         POS_Y++;
+    }
+
+    bool Game::isValidMovement(){
+        bool result = false;
+        for (int i = 0; i < movingPieceArena.getWidth(); i++)
+        {
+            if (movingPieceArena.getPoint(movingPieceArena.getHeight() - 1, i)) {
+                result = false;
+                break;
+            } else {
+                result = true;
+            }
+        } 
+        return result;
     }
 };

@@ -14,9 +14,11 @@ namespace Tetris{
             void moveDown();
 
         private:
+            bool isValidMovement();
         
         private:
-            Arena arena;
+            Arena lockedArena;          // Stores pieces that have already fallen into place
+            Arena movingPieceArena;     // Arena with only moving piece
             int POS_X = 3;
             int POS_Y = 0;
             int ROTATION = 0;
