@@ -40,15 +40,15 @@ namespace Tetris{
     void Game::movement(){
         KeyRegister::Key key;
         key = KeyRegister::pressed_key();
-        if (key == KeyRegister::Key::DOWN && isValidMovement()) {
+        if (key == KeyRegister::Key::DOWN && isValidMovementDown()) {
             moveDown();
-        } else if (key == KeyRegister::Key::LEFT && isValidMovement()) {
+        } else if (key == KeyRegister::Key::LEFT && isValidMovementDown()) {
             POS_X--;
-        } else if (key == KeyRegister::Key::RIGHT && isValidMovement()) {
+        } else if (key == KeyRegister::Key::RIGHT && isValidMovementDown()) {
             POS_X++;
-        } else if (key == KeyRegister::Key::ROTATE_LEFT && isValidMovement()) {
+        } else if (key == KeyRegister::Key::ROTATE_LEFT && isValidMovementDown()) {
             ROTATION = (ROTATION + 3) % 4;
-        } else if (key == KeyRegister::Key::ROTATE_RIGHT && isValidMovement()) {
+        } else if (key == KeyRegister::Key::ROTATE_RIGHT && isValidMovementDown()) {
             ROTATION = (ROTATION + 1) % 4;
         }
     }
@@ -57,17 +57,24 @@ namespace Tetris{
         POS_Y++;
     }
 
-    bool Game::isValidMovement(){
-        bool result = false;
-        for (int i = 0; i < movingPieceArena.getWidth(); i++)
+    bool Game::isValidMovementDown(){
+        bool isValid = false;
+        for (int i = 0; i < lockedArena.getHeight(); i++)
         {
-            if (movingPieceArena.getPoint(movingPieceArena.getHeight() - 1, i)) {
-                result = false;
-                break;
-            } else {
-                result = true;
+            for (int j = 0; j < movingPieceArena.getWidth(); j++)
+            {
+                if (movingPieceArena.getPoint(i, j))
+                {
+                    if (lockedArena.getPoint(i+1, j) || i == lockedArena.getHeight() - 1)
+                    {
+                        isValid = false;
+                        break;
+                    } else {
+                        isValid = true;
+                    }
+                }
             }
-        } 
-        return result;
+        }
+        return isValid;
     }
 };
