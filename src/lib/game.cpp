@@ -86,7 +86,7 @@ namespace Tetris{
             {
                 if (movingPieceArena.getPoint(i, j))
                 {
-                    if (j == 0)
+                    if (j == 0  || lockedArena.getPoint(i, j-1))
                     {
                         count++;
                     }
@@ -106,7 +106,7 @@ namespace Tetris{
             {
                 if (movingPieceArena.getPoint(i, j))
                 {
-                    if (j == lockedArena.getWidth() - 1)
+                    if (j == lockedArena.getWidth() - 1 || lockedArena.getPoint(i, j+1))
                     {
                         count++;
                     }
