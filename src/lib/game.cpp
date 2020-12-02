@@ -55,6 +55,8 @@ namespace Tetris{
     void Game::moveDown(){
         if(isValidMovementDown()){
             POS_Y++;
+        } else {
+            lockPiece();
         }
     }
 
