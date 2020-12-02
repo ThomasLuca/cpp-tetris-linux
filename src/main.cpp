@@ -17,7 +17,7 @@ int main(){
     
     while (true)
     {
-        system("clear");
+        cout << "\x1b[2J";
         cout << game.drawArena() << endl;
         if (key.kbhit())
         {
