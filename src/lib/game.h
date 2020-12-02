@@ -12,6 +12,7 @@ namespace Tetris{
             void movement();
             void generatePiece();
             void moveDown();
+            void spawnNewPiece();
 
         private:
             bool isValidMovementDown();

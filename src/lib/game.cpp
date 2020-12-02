@@ -57,6 +57,7 @@ namespace Tetris{
             POS_Y++;
         } else {
             lockPiece();
+            spawnNewPiece();
         }
     }
 
@@ -130,5 +131,12 @@ namespace Tetris{
                 }
             }
         }
+    }
+
+    void Game::spawnNewPiece(){
+        this->POS_X = 3;
+        this->POS_Y = 0;
+        this->ROTATION = 0;
+        generatePiece();
     }
 };
