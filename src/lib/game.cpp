@@ -62,7 +62,7 @@ namespace Tetris{
     }
 
     bool Game::isValidMovementDown(){
-        bool isValid = false;
+        int count = 0;
         for (int i = 0; i < lockedArena.getHeight(); i++)
         {
             for (int j = 0; j < lockedArena.getWidth(); j++)
@@ -71,14 +71,12 @@ namespace Tetris{
                 {
                     if (lockedArena.getPoint(i+1, j) || i == lockedArena.getHeight() - 1)
                     {
-                        isValid = false;
-                        break;
-                    } else {
-                        isValid = true;
+                        count++;
                     }
                 }
             }
         }
+        bool isValid = (count >= 1) ? false : true;
         return isValid;
     }
 
