@@ -18,6 +18,7 @@ namespace Tetris{
             static Key pressed_key(void);
             void clear(void);
             static char getch(void);
+            int kbhit(void);
             
     };
 };
