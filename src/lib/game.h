@@ -17,6 +17,7 @@ namespace Tetris{
             bool isValidMovementDown();
             bool isValidMovementLeft();
             bool isValidMovementRight();
+            void lockPiece();
         
         private:
             Arena lockedArena;          // Stores pieces that have already fallen into place

@@ -1,6 +1,7 @@
 #include <iostream>
-#include <unistd.h>
+#include <thread>
 #include "./lib/game.h"
+#include "./lib/keyRegister.h"
 
 
 using namespace std;
@@ -8,16 +9,19 @@ using namespace std;
 
 int main(){
     Tetris::Game game;
-    game.generatePiece();
-    do
-    {
-        game.movement();
-        system("clear");
-        // game.moveDown();
-        cout << game.drawArena() << endl;
-        sleep(0.05);
-    } while (true);
-    
+    Tetris::KeyRegister key;
 
+    game.generatePiece();
+    while (true)
+    {
+        system("clear");
+        cout << game.drawArena() << endl;
+        if (key.kbhit())
+        {
+            game.movement();
+        }
+        game.moveDown();
+        this_thread::sleep_for(1000ms);
+    }
     return 0;
 }

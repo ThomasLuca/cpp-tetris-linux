@@ -8,11 +8,10 @@
 namespace Tetris{
 
     Game::Game(){
-        drawArena();
+        lockedArena.createArena();
     }
 
     std::string Game::drawArena(){
-        lockedArena.createArena();
         movingPieceArena.createArena();
         movingPieceArena.placePiece(POS_Y, POS_X, pieceType, ROTATION);
         
@@ -40,7 +39,7 @@ namespace Tetris{
     void Game::movement(){
         KeyRegister::Key key;
         key = KeyRegister::pressed_key();
-        if (key == KeyRegister::Key::DOWN && isValidMovementDown()) {
+        if (key == KeyRegister::Key::DOWN) {
             moveDown();
         } else if (key == KeyRegister::Key::LEFT && isValidMovementLeft()) {
             POS_X--;
@@ -54,7 +53,9 @@ namespace Tetris{
     }
 
     void Game::moveDown(){
-        POS_Y++;
+        if(isValidMovementDown()){
+            POS_Y++;
+        }
     }
 
     bool Game::isValidMovementDown(){
@@ -98,7 +99,6 @@ namespace Tetris{
     }
 
     bool Game::isValidMovementRight(){
-        // bool isValid = false;
         int count = 0;
         for (int i = 0; i < lockedArena.getHeight(); i++)
         {
@@ -115,5 +115,18 @@ namespace Tetris{
         }
         bool isValid = (count >= 1) ? false : true;
         return isValid;
+    }
+
+    void Game::lockPiece(){
+        for (int i = 0; i < lockedArena.getHeight(); i++)
+        {
+            for (int j = 0; j < lockedArena.getWidth(); j++)
+            {
+                if (movingPieceArena.getPoint(i, j))
+                {
+                    lockedArena.setPoint(i, j);
+                }
+            }
+        }
     }
 };
