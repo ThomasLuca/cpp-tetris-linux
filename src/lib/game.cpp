@@ -9,6 +9,7 @@ namespace Tetris{
 
     Game::Game(){
         lockedArena.createArena();
+        movementCheck.initArena(&movingPieceArena, &lockedArena);
     }
 
     std::string Game::drawArena(){
@@ -41,81 +42,24 @@ namespace Tetris{
         key = KeyRegister::pressed_key();
         if (key == KeyRegister::Key::DOWN) {
             moveDown();
-        } else if (key == KeyRegister::Key::LEFT && isValidMovementLeft()) {
+        } else if (key == KeyRegister::Key::LEFT && movementCheck.isValidMovement(key)) {
             POS_X--;
-        } else if (key == KeyRegister::Key::RIGHT && isValidMovementRight()) {
+        } else if (key == KeyRegister::Key::RIGHT && movementCheck.isValidMovement(key)) {
             POS_X++;
-        } else if (key == KeyRegister::Key::ROTATE_LEFT && isValidMovementDown() && isValidMovementLeft() && isValidMovementRight()) {
+        } else if (key == KeyRegister::Key::ROTATE_LEFT && movementCheck.isValidMovement(key)) {
             ROTATION = (ROTATION + 3) % 4;
-        } else if (key == KeyRegister::Key::ROTATE_RIGHT && isValidMovementDown() && isValidMovementLeft() && isValidMovementRight()) {
+        } else if (key == KeyRegister::Key::ROTATE_RIGHT && movementCheck.isValidMovement(key)) {
             ROTATION = (ROTATION + 1) % 4;
         }
     }
 
     void Game::moveDown(){
-        if(isValidMovementDown()){
+        if(movementCheck.isValidMovement(KeyRegister::Key::DOWN)){
             POS_Y++;
         } else {
             lockPiece();
             spawnNewPiece();
         }
-    }
-
-    bool Game::isValidMovementDown(){
-        int count = 0;
-        for (int i = 0; i < lockedArena.getHeight(); i++)
-        {
-            for (int j = 0; j < lockedArena.getWidth(); j++)
-            {
-                if (movingPieceArena.getPoint(i, j))
-                {
-                    if (lockedArena.getPoint(i+1, j) || i == lockedArena.getHeight() - 1)
-                    {
-                        count++;
-                    }
-                }
-            }
-        }
-        bool isValid = (count >= 1) ? false : true;
-        return isValid;
-    }
-
-    bool Game::isValidMovementLeft(){
-        int count = 0;
-        for (int i = 0; i < lockedArena.getHeight(); i++)
-        {
-            for (int j = 0; j < lockedArena.getWidth(); j++)
-            {
-                if (movingPieceArena.getPoint(i, j))
-                {
-                    if (j == 0  || lockedArena.getPoint(i, j-1))
-                    {
-                        count++;
-                    }
-                }
-            }
-        }
-        bool isValid = (count >= 1) ? false : true;
-        return isValid;
-    }
-
-    bool Game::isValidMovementRight(){
-        int count = 0;
-        for (int i = 0; i < lockedArena.getHeight(); i++)
-        {
-            for (int j = 0; j < lockedArena.getWidth(); j++)
-            {
-                if (movingPieceArena.getPoint(i, j))
-                {
-                    if (j == lockedArena.getWidth() - 1 || lockedArena.getPoint(i, j+1))
-                    {
-                        count++;
-                    }
-                }
-            }
-        }
-        bool isValid = (count >= 1) ? false : true;
-        return isValid;
     }
 
     void Game::lockPiece(){
