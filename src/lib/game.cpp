@@ -1,8 +1,11 @@
+#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <sstream>
-#include "game.h"
+#include <unistd.h>
 #include "keyRegister.h"
+#include "game.h"
+
 
 
 namespace Tetris{
@@ -10,6 +13,28 @@ namespace Tetris{
     Game::Game(){
         lockedArena.createArena();
         movementCheck.initArena(&movingPieceArena, &lockedArena);
+        gameloop();
+    }
+
+    void Game::gameloop(){
+        int count = 0;
+        unsigned int microseconds = 10000;
+    
+        while (true)
+        {
+            std::cout << "\x1b[2J";
+            std::cout << drawArena() << std::endl;
+            if (key.kbhit())
+            {
+                movement();
+            }
+            usleep(microseconds);
+            if (count % 50 == 0)
+            {
+                moveDown();
+            }
+            count++;
+        }
     }
 
     std::string Game::drawArena(){
@@ -63,9 +88,9 @@ namespace Tetris{
     }
 
     void Game::lockPiece(){
-        for (int i = 0; i < lockedArena.getHeight(); i++)
+        for (int i = POS_Y; i < POS_Y + 4; i++)
         {
-            for (int j = 0; j < lockedArena.getWidth(); j++)
+            for (int j = POS_X; j < POS_X + 4; j++)
             {
                 if (movingPieceArena.getPoint(i, j))
                 {
