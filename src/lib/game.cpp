@@ -19,19 +19,25 @@ namespace Tetris{
     void Game::gameloop(){
         int count = 0;
         unsigned int microseconds = 10000;
-    
+        bool needsUpdate = true;
         while (true)
         {
-            std::cout << "\x1b[2J";
-            std::cout << drawArena() << std::endl;
+            if (needsUpdate)
+            {
+                system("clear");
+                std::cout << drawArena() << std::endl;
+                needsUpdate = false;
+            }
             if (key.kbhit())
             {
                 movement();
+                needsUpdate = true;
             }
             usleep(microseconds);
             if (count % 50 == 0)
             {
                 moveDown();
+                needsUpdate = true;
             }
             count++;
         }
