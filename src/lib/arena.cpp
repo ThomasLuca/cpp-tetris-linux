@@ -60,6 +60,17 @@ namespace Tetris{
         {
             arena[line][j] = 0;
         }
+        relocateLines(line);
+    }
+
+    void Arena::relocateLines(int line){
+        for (int i = line; i > 0; i--)
+        {
+            for (int j = 0; j < ARENAWIDTH; j++)
+            {
+                arena[i][j] = arena[i-1][j];
+            }
+        }
     }
 
     int Arena::getWidth(){

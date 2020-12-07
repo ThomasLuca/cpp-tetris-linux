@@ -13,7 +13,10 @@ namespace Tetris{
             int getWidth();
             int getHeight();
             void checkClearLine(int y);
+
+        private:
             void clearLine(int line);
+            void relocateLines(int line);
 
         private:
             int ARENAWIDTH = 10;
