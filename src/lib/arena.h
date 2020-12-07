@@ -13,6 +13,7 @@ namespace Tetris{
             int getWidth();
             int getHeight();
             void checkClearLine(int y);
+            bool isGameOver();
 
         private:
             void clearLine(int line);

@@ -20,7 +20,7 @@ namespace Tetris{
         int count = 0;
         unsigned int microseconds = 10000;
         bool needsUpdate = true;
-        while (true)
+        while (!lockedArena.isGameOver())
         {
             if (needsUpdate)
             {

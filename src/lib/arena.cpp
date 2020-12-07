@@ -73,6 +73,18 @@ namespace Tetris{
         }
     }
 
+    bool Arena::isGameOver(){
+        int count = 0;
+        for (int i = 0; i < ARENAWIDTH - 1; i++)
+        {
+            if (arena[1][i])
+            {
+                count++;
+            } 
+        }
+        return (count >= 1) ? true : false;
+    }
+
     int Arena::getWidth(){
         return ARENAWIDTH;
     }
