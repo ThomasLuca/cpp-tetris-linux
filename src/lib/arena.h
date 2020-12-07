@@ -12,10 +12,12 @@ namespace Tetris{
             void createArena();
             int getWidth();
             int getHeight();
+            void checkClearLine(int y);
+            void clearLine(int line);
 
         private:
-            int arenaWidth = 10;
-            int arenaHeight = 21;
+            int ARENAWIDTH = 10;
+            int ARENAHEIGHT = 21;
             bool arena[21][10];
             Piece pieces;
     };

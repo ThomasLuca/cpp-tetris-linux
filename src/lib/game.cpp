@@ -117,6 +117,7 @@ namespace Tetris{
                 }
             }
         }
+        lockedArena.checkClearLine(posY);
     }
 
     void Game::spawnNewPiece(){
