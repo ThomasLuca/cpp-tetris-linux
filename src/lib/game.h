@@ -10,16 +10,16 @@ namespace Tetris{
     class Game{
         public:
             Game();
-            std::string drawArena();
-            void movement();
-            void generatePiece();
-            void spawnNewPiece();
-            void gameloop();
-            void moveDown();
-            void snapDown();
 
         private:
+            std::string drawArena();
+            void gameloop();
+            void generatePiece();
+            void spawnNewPiece();
             void lockPiece();
+            void movement();
+            void snapDown();
+            void moveDown();
         
         private:
             Arena lockedArena;          // Stores pieces that have already fallen into place
