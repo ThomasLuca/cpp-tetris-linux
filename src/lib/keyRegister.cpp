@@ -25,6 +25,8 @@ namespace Tetris{
             return Key::ROTATE_LEFT;
         case 'e':
             return Key::ROTATE_RIGHT;
+        case ' ':
+            return Key::INSTAFALL;
         }
         return Key::UNKNOWN;
         

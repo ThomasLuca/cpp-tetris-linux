@@ -13,9 +13,10 @@ namespace Tetris{
             std::string drawArena();
             void movement();
             void generatePiece();
-            void moveDown();
             void spawnNewPiece();
             void gameloop();
+            void moveDown();
+            void snapDown();
 
         private:
             void lockPiece();
@@ -25,9 +26,9 @@ namespace Tetris{
             Arena movingPieceArena;     // Arena with only moving piece
             Collisions movementCheck;
             KeyRegister key;
-            int POS_X = 3;
-            int POS_Y = 0;
-            int ROTATION = 0;
+            int posX = 3;
+            int posY = 0;
+            int rotation = 0;
             int pieceType = 0;
     };
 };

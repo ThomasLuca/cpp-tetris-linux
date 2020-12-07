@@ -45,7 +45,7 @@ namespace Tetris{
 
     std::string Game::drawArena(){
         movingPieceArena.createArena();
-        movingPieceArena.placePiece(POS_Y, POS_X, pieceType, ROTATION);
+        movingPieceArena.placePiece(posY, posX, pieceType, rotation);
         
         std::stringstream output;
         for (int i = 0; i < lockedArena.getHeight(); i++)
@@ -74,29 +74,42 @@ namespace Tetris{
         if (key == KeyRegister::Key::DOWN) {
             moveDown();
         } else if (key == KeyRegister::Key::LEFT && movementCheck.isValidMovement(key)) {
-            POS_X--;
+            posX--;
         } else if (key == KeyRegister::Key::RIGHT && movementCheck.isValidMovement(key)) {
-            POS_X++;
+            posX++;
         } else if (key == KeyRegister::Key::ROTATE_LEFT && movementCheck.isValidMovement(key)) {
-            ROTATION = (ROTATION + 3) % 4;
+            rotation = (rotation + 3) % 4;
         } else if (key == KeyRegister::Key::ROTATE_RIGHT && movementCheck.isValidMovement(key)) {
-            ROTATION = (ROTATION + 1) % 4;
+            rotation = (rotation + 1) % 4;
+        } else if (key == KeyRegister::Key::INSTAFALL){
+            snapDown();
         }
     }
 
     void Game::moveDown(){
         if(movementCheck.isValidMovement(KeyRegister::Key::DOWN)){
-            POS_Y++;
+            posY++;
         } else {
             lockPiece();
             spawnNewPiece();
         }
     }
 
-    void Game::lockPiece(){
-        for (int i = POS_Y; i < POS_Y + 4; i++)
+    void Game::snapDown(){
+        while (movementCheck.isValidMovement(KeyRegister::Key::DOWN))
         {
-            for (int j = POS_X; j < POS_X + 4; j++)
+            posY++;
+            system("clear");
+            std::cout << drawArena() << std::endl;
+        }
+        lockPiece();
+        spawnNewPiece();
+    }
+
+    void Game::lockPiece(){
+        for (int i = posY; i < posY + 4; i++)
+        {
+            for (int j = posX; j < posX + 4; j++)
             {
                 if (movingPieceArena.getPoint(i, j))
                 {
@@ -107,9 +120,9 @@ namespace Tetris{
     }
 
     void Game::spawnNewPiece(){
-        this->POS_X = 3;
-        this->POS_Y = 0;
-        this->ROTATION = 0;
+        this->posX = 3;
+        this->posY = 0;
+        this->rotation = 0;
         generatePiece();
     }
 };

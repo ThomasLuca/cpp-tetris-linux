@@ -11,6 +11,7 @@ namespace Tetris{
                 RIGHT,
                 ROTATE_RIGHT,
                 ROTATE_LEFT,
+                INSTAFALL,
                 UNKNOWN
             };
         
