@@ -40,13 +40,13 @@ namespace Tetris{
         int lineCompletion = 0;
         for (int i = y; i < y + 4; i++)
         {
-            for (int j = 0; j < ARENAWIDTH - 1; j++)
+            for (int j = 0; j < ARENAWIDTH; j++)
             {
                 if (arena[i][j])
                 {
                     lineCompletion++;
                 }
-                if (lineCompletion == ARENAWIDTH - 1)
+                if (lineCompletion == ARENAWIDTH)
                 {
                     clearLine(i);
                 }
