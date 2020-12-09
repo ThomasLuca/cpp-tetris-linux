@@ -36,8 +36,9 @@ namespace Tetris{
         }
     }
 
-    void Arena::checkClearLine(int y){
+    int Arena::checkClearLine(int y){
         int lineCompletion = 0;
+        int completedLines = 0;
         for (int i = y; i < y + 4; i++)
         {
             for (int j = 0; j < ARENAWIDTH; j++)
@@ -49,10 +50,12 @@ namespace Tetris{
                 if (lineCompletion == ARENAWIDTH)
                 {
                     clearLine(i);
+                    completedLines++;
                 }
             }
             lineCompletion = 0;
         }
+        return completedLines;
     }
 
     void Arena::clearLine(int line){
