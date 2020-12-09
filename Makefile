@@ -11,6 +11,7 @@ OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/game.o \
 				$(LIBDIR)/keyRegister.o \
 				$(LIBDIR)/collisions.o \
+				$(LIBDIR)/score.o \
 
 all: makebuildir $(TARGET)
 
