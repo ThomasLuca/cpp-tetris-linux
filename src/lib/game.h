@@ -4,6 +4,7 @@
 #include "arena.h"
 #include "collisions.h"
 #include "keyRegister.h"
+#include "score.h"
 
 namespace Tetris{
 
@@ -26,6 +27,8 @@ namespace Tetris{
             Arena movingPieceArena;     // Arena with only moving piece
             Collisions movementCheck;
             KeyRegister key;
+            Score score;
+            
             int posX = 3;
             int posY = 0;
             int rotation = 0;

@@ -25,6 +25,8 @@ namespace Tetris{
             if (needsUpdate)
             {
                 system("clear");
+                std::cout << "score: ";
+                std::cout << score.getScore() << std::endl;
                 std::cout << drawArena() << std::endl;
                 needsUpdate = false;
             }
@@ -117,7 +119,7 @@ namespace Tetris{
                 }
             }
         }
-        lockedArena.checkClearLine(posY);
+        score.addToScore(lockedArena.checkClearLine(posY));
     }
 
     void Game::spawnNewPiece(){
