@@ -14,12 +14,12 @@ namespace Tetris{
     }
 
     /*  Returns boolean value of any given place in the arena   */
-    bool Arena::getPoint(int y, int x){
+    int Arena::getPoint(int y, int x){
         return arena[y][x];
     }
 
-    void Arena::setPoint(int y, int x){
-        arena[y][x] = 1;
+    void Arena::setPoint(int y, int x, int color){
+        arena[y][x] = color;
     }
 
     /*  Places pieces anywhere in the arena by enabling certain positions   */
@@ -30,7 +30,7 @@ namespace Tetris{
             {
                 if (pieces.getBlockOfPiece(piece, rotation, i - y, j - x))
                 {
-                    setPoint(i, j);
+                    setPoint(i, j, pieces.getBlockOfPiece(piece, rotation, i - y, j - x));
                 }
             }
         }
