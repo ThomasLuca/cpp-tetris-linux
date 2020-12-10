@@ -54,12 +54,20 @@ namespace Tetris{
         {
             for (int j = 0; j < lockedArena.getWidth(); j++)
             {
-                if (movingPieceArena.getPoint(i, j) || lockedArena.getPoint(i, j))
-                {
-                    output << "\033[;32m██\033[0m";
-                } else {
-                    output << ". ";
-                }
+                output << colors.setChar(movingPieceArena.getPoint(i, j), lockedArena.getPoint(i, j));
+
+                // if (movingPieceArena.getPoint(i, j) == 2 || lockedArena.getPoint(i, j) == 2)
+                // {
+                //     output << "\033[;32m██\033[0m";
+                // }
+                // else if (movingPieceArena.getPoint(i, j) == 1 || lockedArena.getPoint(i, j) == 1)
+                // {
+                //     output << "\033[;31m██\033[0m";
+                // }
+                // else
+                // {
+                //     output << ". ";
+                // }
             }
             output << std::endl;
         }
@@ -115,7 +123,7 @@ namespace Tetris{
             {
                 if (movingPieceArena.getPoint(i, j))
                 {
-                    lockedArena.setPoint(i, j);
+                    lockedArena.setPoint(i, j, movingPieceArena.getPoint(i, j));
                 }
             }
         }

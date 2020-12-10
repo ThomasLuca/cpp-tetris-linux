@@ -5,6 +5,7 @@
 #include "collisions.h"
 #include "keyRegister.h"
 #include "score.h"
+#include "colors.h"
 
 namespace Tetris{
 
@@ -28,6 +29,7 @@ namespace Tetris{
             Collisions movementCheck;
             KeyRegister key;
             Score score;
+            Colors colors;
             
             int posX = 3;
             int posY = 0;
