@@ -105,8 +105,8 @@ namespace Tetris{
         while (movementCheck.isValidMovement(KeyRegister::Key::DOWN))
         {
             posY++;
-            system("clear");
-            std::cout << drawArena() << std::endl;
+            movingPieceArena.createArena();
+            movingPieceArena.placePiece(posY, posX, pieceType, rotation);
         }
         lockPiece();
         spawnNewPiece();
