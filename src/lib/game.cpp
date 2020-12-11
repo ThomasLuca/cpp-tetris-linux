@@ -25,8 +25,7 @@ namespace Tetris{
             if (needsUpdate)
             {
                 system("clear");
-                std::cout << "score: ";
-                std::cout << score.getScore() << std::endl;
+                drawHead();
                 std::cout << drawArena() << std::endl;
                 needsUpdate = false;
             }
@@ -50,28 +49,24 @@ namespace Tetris{
         movingPieceArena.placePiece(posY, posX, pieceType, rotation);
         
         std::stringstream output;
+        output <<  "\033[;97m______________________\033[0m" <<std::endl;
         for (int i = 0; i < lockedArena.getHeight(); i++)
         {
+            output <<  "\033[;97m█\033[0m";
             for (int j = 0; j < lockedArena.getWidth(); j++)
             {
                 output << colors.setChar(movingPieceArena.getPoint(i, j), lockedArena.getPoint(i, j));
-
-                // if (movingPieceArena.getPoint(i, j) == 2 || lockedArena.getPoint(i, j) == 2)
-                // {
-                //     output << "\033[;32m██\033[0m";
-                // }
-                // else if (movingPieceArena.getPoint(i, j) == 1 || lockedArena.getPoint(i, j) == 1)
-                // {
-                //     output << "\033[;31m██\033[0m";
-                // }
-                // else
-                // {
-                //     output << ". ";
-                // }
             }
-            output << std::endl;
+            output <<  "\033[;97m█\033[0m" <<std::endl;
         }
+        output <<  "\033[;97m██████████████████████\033[0m" <<std::endl;
         return output.str();
+    }
+
+    void Game::drawHead(){
+        std::cout << "\033[;97m______________________\033[0m" << std::endl;
+        std::cout << "Score: ";
+        std::cout << score.getScore() << std::endl;
     }
 
     void Game::generatePiece(){

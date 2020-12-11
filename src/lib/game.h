@@ -22,6 +22,7 @@ namespace Tetris{
             void movement();
             void snapDown();
             void moveDown();
+            void drawHead();
         
         private:
             Arena lockedArena;          // Stores pieces that have already fallen into place
