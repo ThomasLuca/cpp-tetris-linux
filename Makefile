@@ -13,6 +13,8 @@ OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/collisions.o \
 				$(LIBDIR)/score.o \
 				$(LIBDIR)/colors.o \
+				$(LIBDIR)/scoreboard.o \
+
 
 all: makebuildir $(TARGET)
 
