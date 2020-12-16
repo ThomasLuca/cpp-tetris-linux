@@ -13,6 +13,7 @@ namespace Tetris{
     Game::Game(){
         lockedArena.createArena();
         movementCheck.initArena(&movingPieceArena, &lockedArena);
+        scoreboard.innitScoreboard();
         gameloop();
     }
 
@@ -26,7 +27,7 @@ namespace Tetris{
             if (needsUpdate)
             {
                 system("clear");
-                drawHead();
+                scoreboard.printScoreboard();
                 std::cout << drawArena() << std::endl;
                 needsUpdate = false;
             }
@@ -50,7 +51,6 @@ namespace Tetris{
         movingPieceArena.placePiece(posY, posX, pieceType, rotation);
         
         std::stringstream output;
-        output <<  "\033[;97m______________________\033[0m" <<std::endl;
         for (int i = 0; i < lockedArena.getHeight(); i++)
         {
             output <<  "\033[;97m█\033[0m";
@@ -64,15 +64,15 @@ namespace Tetris{
         return output.str();
     }
 
-    void Game::drawHead(){
-        std::cout << "\033[;97m______________________\033[0m" << std::endl;
-        std::cout << "Score: ";
-        std::cout << score.getScore() << std::endl;
-    }
+    // void Game::drawHead(){
+    //     std::cout << "\033[;97m______________________\033[0m" << std::endl;
+    //     std::cout << "Score: ";
+    //     std::cout << score.getScore() << std::endl;
+    // }
 
     void Game::generatePiece(){
         srand (time(NULL));
-        pieceType = rand() % 7;
+        scoreboard.setNextPiece(rand() % 7);
     }
     void Game::movement(){
         KeyRegister::Key key;
@@ -130,6 +130,7 @@ namespace Tetris{
         this->posX = 3;
         this->posY = 0;
         this->rotation = 0;
+        this->pieceType = scoreboard.getNextPiece();
         generatePiece();
     }
 };

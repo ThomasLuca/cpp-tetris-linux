@@ -6,6 +6,7 @@
 #include "keyRegister.h"
 #include "score.h"
 #include "colors.h"
+#include "scoreboard.h"
 
 namespace Tetris{
 
@@ -22,7 +23,7 @@ namespace Tetris{
             void movement();
             void snapDown();
             void moveDown();
-            void drawHead();
+            // void drawHead();
         
         private:
             Arena lockedArena;          // Stores pieces that have already fallen into place
@@ -31,6 +32,7 @@ namespace Tetris{
             KeyRegister key;
             Score score;
             Colors colors;
+            Scoreboard scoreboard;
             
             int posX = 3;
             int posY = 0;
