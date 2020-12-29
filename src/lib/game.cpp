@@ -27,6 +27,7 @@ namespace Tetris{
             if (needsUpdate)
             {
                 system("clear");
+                scoreboard.placeScore(score.getScore());
                 scoreboard.printScoreboard();
                 std::cout << drawArena() << std::endl;
                 needsUpdate = false;

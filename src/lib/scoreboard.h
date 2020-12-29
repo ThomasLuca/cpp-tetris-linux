@@ -11,9 +11,11 @@ namespace Tetris{
         void setNextPiece(int pieceType);
         int getNextPiece();
         void printScoreboard();
+        void placeScore(int points);
     private:
         void drawHorizonalBorder();
         void placePiece();
+        void placeBorder();
         void printHead();
     private:
         int pieceType = 0;
