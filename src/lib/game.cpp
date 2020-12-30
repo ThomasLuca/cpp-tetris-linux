@@ -65,12 +65,6 @@ namespace Tetris{
         return output.str();
     }
 
-    // void Game::drawHead(){
-    //     std::cout << "\033[;97m______________________\033[0m" << std::endl;
-    //     std::cout << "Score: ";
-    //     std::cout << score.getScore() << std::endl;
-    // }
-
     void Game::generatePiece(){
         srand (time(NULL));
         scoreboard.setNextPiece(rand() % 7);
