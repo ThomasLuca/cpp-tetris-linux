@@ -7,6 +7,7 @@
 #include "score.h"
 #include "colors.h"
 #include "scoreboard.h"
+#include "gameOver.h"
 
 namespace Tetris{
 
@@ -33,6 +34,7 @@ namespace Tetris{
             Score score;
             Colors colors;
             Scoreboard scoreboard;
+            GameOver endGame;
             
             int posX = 3;
             int posY = 0;

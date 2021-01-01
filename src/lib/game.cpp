@@ -45,6 +45,7 @@ namespace Tetris{
             }
             count++;
         }
+        endGame.init(score.getScore());
     }
 
     std::string Game::drawArena(){
