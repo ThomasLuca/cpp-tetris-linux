@@ -14,6 +14,7 @@ OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/score.o \
 				$(LIBDIR)/colors.o \
 				$(LIBDIR)/scoreboard.o \
+				$(LIBDIR)/gameOver.o \
 
 
 all: makebuildir $(TARGET)
